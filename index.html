@@ -6,14 +6,17 @@
 *{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
 header{padding:34px 22px 22px;max-width:1180px;margin:auto}h1{font-size:clamp(25px,4vw,38px);margin:0 0 7px}header p{color:var(--muted);margin:0;max-width:760px}
 .wrap{max-width:1180px;margin:auto;padding:0 22px 48px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0 20px}.toolbar input,.toolbar select{border:1px solid var(--line);background:white;border-radius:10px;padding:11px 13px;font:inherit}.toolbar input{flex:1;min-width:210px}.count{color:var(--muted);font-size:13px;margin-left:auto}
-.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column;min-width:0}.photo{height:290px;background:#f0efeb;display:flex;align-items:center;justify-content:center;padding:10px}.photo img{height:100%;width:100%;object-fit:contain}.missing{color:#888;text-align:center;padding:20px;font-size:13px}.missing b{display:block;font-size:28px;color:#bbb;margin-bottom:8px}.info{padding:13px 14px 15px;display:flex;flex-direction:column;gap:5px;flex:1}.title{font-weight:700;font-size:16px}.jp{font-size:13px;color:#666}.meta{font-size:12px;color:#888}.tag{display:inline-block;background:#edf2ef;color:#47675d;padding:3px 7px;border-radius:20px;font-size:11px;width:max-content}.check{margin-top:7px;font-size:13px;color:#555}.note{background:#fff;border:1px solid var(--line);padding:14px 16px;border-radius:12px;margin:18px 0 22px;color:#666;font-size:13px}footer{max-width:1180px;margin:auto;padding:0 22px 35px;color:#888;font-size:12px}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column;min-width:0}.photo{height:290px;background:#f0efeb;display:flex;align-items:center;justify-content:center;padding:10px}.photo img{height:100%;width:100%;object-fit:contain}.missing{color:#888;text-align:center;padding:20px;font-size:13px}.missing b{display:block;font-size:28px;color:#bbb;margin-bottom:8px}.info{padding:13px 14px 15px;display:flex;flex-direction:column;gap:5px;flex:1}.title{font-weight:700;font-size:16px}.jp{font-size:13px;color:#666}.meta{font-size:12px;color:#888}.tag{display:inline-block;background:#edf2ef;color:#47675d;padding:3px 7px;border-radius:20px;font-size:11px;width:max-content}.check{margin-top:7px;font-size:13px;color:#555}.price-box{margin-top:10px;padding-top:9px;border-top:1px solid var(--line);display:grid;gap:6px}.price-label{font-size:12px;color:#777}.price-controls{display:flex;gap:5px;min-width:0}.price-controls input,.price-controls select{min-width:0;width:100%;padding:7px 6px;border:1px solid var(--line);border-radius:7px;background:#fff;font:inherit;font-size:12px}.price-controls input{flex:1}.price-controls select{width:70px;flex:0 0 70px}.price-actions{display:flex;align-items:center;gap:7px}.price-actions button{border:0;border-radius:7px;padding:6px 10px;background:var(--accent);color:#fff;font:inherit;font-size:12px}.price-saved{font-size:12px;color:#47675d}.price-clear{border:0;background:transparent;color:#888;font:inherit;font-size:11px;padding:4px}.note{background:#fff;border:1px solid var(--line);padding:14px 16px;border-radius:12px;margin:18px 0 22px;color:#666;font-size:13px}
+@media(max-width:699px){header{padding-top:22px}.wrap{padding-left:14px;padding-right:14px}}
+footer{max-width:1180px;margin:auto;padding:0 22px 35px;color:#888;font-size:12px}
 @media(max-width:520px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:220px}.info{padding:10px}.title{font-size:14px}}
 </style></head><body>
 <header><h1>3D 大人の図鑑シール</h1><p>个人收藏图鉴 · KAMIO JAPAN · 共整理 21 款。商品图片使用你上传的单款包装照片，古代埃及款已补齐。</p></header>
 <main class="wrap">
 <div class="note">图片已保存在网站本地 images 文件夹中，离线也可以查看。共收录 21 张单款图片，包含古代埃及（231212）。图片仅用于个人收藏整理。</div>
-<div class="toolbar"><input id="q" placeholder="搜索中文主题、日文名称或商品编号…"><select id="batch"><option value="all">全部批次</option><option value="1">第一批 · 6款</option><option value="2">第二批 · 6款</option><option value="3">第三批 · 9款</option></select><span class="count" id="count"></span></div>
-<div class="grid" id="grid"></div></main><footer>非官方个人收藏索引。商品图片版权归 KAMIO JAPAN 及相关权利人所有。</footer>
+<div class="toolbar"><input id="q" placeholder="搜索中文主题、日文名称或商品编号…"><select id="batch"><option value="all">全部批次</option><option value="1">第一批 · 6款</option><option value="2">第二批 · 6款</option><option value="3">第三批 · 9款</option></select><span class="count" id="count"></span></div><div class="note" id="sync-status" role="status">正在连接共享收藏…</div>
+<div class="grid" id="grid"></div>
+</main><footer>非官方个人收藏索引。商品图片版权归 KAMIO JAPAN 及相关权利人所有。</footer>
 <script>
 const items=[{code:'228126',batch:1,zh:'怀旧文具',jp:'懐かしい文房具編',img:'images/228126.jpg'},
 {code:'228127',batch:1,zh:'矿物',jp:'鉱物編',img:'images/228127.jpg'},
@@ -37,7 +40,35 @@ const items=[{code:'228126',batch:1,zh:'怀旧文具',jp:'懐かしい文房具�
 {code:'233534',batch:3,zh:'热带鱼',jp:'熱帯魚編',img:'images/233534.jpg'},
 {code:'233535',batch:3,zh:'水族馆',jp:'水族館編',img:'images/233535.jpg'}];
 const grid=document.getElementById('grid'),q=document.getElementById('q'),batch=document.getElementById('batch'),count=document.getElementById('count');
-const saved=()=>JSON.parse(localStorage.getItem('zukan-owned')||'[]');
-function render(){let term=q.value.trim().toLowerCase(),b=batch.value;let list=items.filter(x=>(b==='all'||String(x.batch)===b)&&(!term||[x.code,x.zh,x.jp].join(' ').toLowerCase().includes(term)));count.textContent=`显示 ${list.length} / ${items.length} 款`;grid.innerHTML=list.map(x=>`<article class="card"><div class="photo">${x.img?`<a href="${x.img}" target="_blank"><img loading="lazy" src="${x.img}" alt="${x.jp}"></a>`:`<div class="missing"><b>图片待补</b>古代埃及款<br>编号 231212</div>`}</div><div class="info"><span class="tag">第 ${x.batch} 批</span><div class="title">${x.zh}</div><div class="jp">${x.jp}</div><div class="meta">商品编号：${x.code}</div><label class="check"><input type="checkbox" data-code="${x.code}" ${saved().includes(x.code)?'checked':''}> 已收藏</label></div></article>`).join('');grid.querySelectorAll('input[type=checkbox]').forEach(el=>el.addEventListener('change',()=>{let a=saved();a=el.checked?[...new Set([...a,el.dataset.code])]:a.filter(v=>v!==el.dataset.code);localStorage.setItem('zukan-owned',JSON.stringify(a));}));}
+const statusEl=document.getElementById('sync-status');
+// Favorites and item prices are stored only in this browser/device.
+const localKey='zukan-owned';
+const priceKey='zukan-item-prices-v1';
+const readLocal=(key,fallback)=>{try{return JSON.parse(localStorage.getItem(key)||JSON.stringify(fallback))}catch{return fallback}};
+let owned=readLocal(localKey,[]);
+let prices=readLocal(priceKey,{});
+function setStatus(msg){statusEl.textContent=msg;}
+setStatus('收藏状态和购买价格仅保存在当前设备的浏览器中');
+function saveOwned(){localStorage.setItem(localKey,JSON.stringify(owned));setStatus('✓ 收藏状态已保存在本设备');}
+function savePrices(){localStorage.setItem(priceKey,JSON.stringify(prices));setStatus('✓ 购买价格已保存在本设备');}
+function esc(s){return String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function render(){
+  let term=q.value.trim().toLowerCase(),b=batch.value;
+  let list=items.filter(x=>(b==='all'||String(x.batch)===b)&&(!term||[x.code,x.zh,x.jp].join(' ').toLowerCase().includes(term)));
+  count.textContent=`已收藏 ${owned.length} / ${items.length} 款 · 显示 ${list.length} 款`;
+  grid.innerHTML=list.map(x=>{
+    const price=prices[x.code]||{};
+    return `<article class="card"><div class="photo"><a href="${x.img}" target="_blank"><img loading="lazy" src="${x.img}" alt="${esc(x.jp)}"></a></div><div class="info"><span class="tag">第 ${x.batch} 批</span><div class="title">${esc(x.zh)}</div><div class="jp">${esc(x.jp)}</div><div class="meta">商品编号：${x.code}</div><label class="check"><input type="checkbox" data-code="${x.code}" ${owned.includes(x.code)?'checked':''}> 已收藏</label><div class="price-box"><span class="price-label">购买价格</span><div class="price-controls"><input type="number" min="0" step="0.01" inputmode="decimal" placeholder="输入金额" aria-label="${esc(x.zh)}购买价格" data-price-input="${x.code}" value="${price.amount??''}"><select aria-label="币种" data-price-currency="${x.code}"><option value="JPY" ${price.currency==='JPY'?'selected':''}>JPY</option><option value="CNY" ${price.currency==='CNY'?'selected':''}>CNY</option><option value="USD" ${price.currency==='USD'?'selected':''}>USD</option></select></div><div class="price-actions"><button type="button" data-price-save="${x.code}">保存价格</button>${price.amount!==undefined?`<span class="price-saved">已记录：${esc(price.amount)} ${esc(price.currency||'JPY')}</span>`:''}<button type="button" class="price-clear" data-price-clear="${x.code}">清除</button></div></div></div></article>`;
+  }).join('');
+  grid.querySelectorAll('input[type=checkbox][data-code]').forEach(el=>el.addEventListener('change',()=>{owned=el.checked?[...new Set([...owned,el.dataset.code])]:owned.filter(v=>v!==el.dataset.code);saveOwned();count.textContent=`已收藏 ${owned.length} / ${items.length} 款 · 显示 ${list.length} 款`;}));
+  grid.querySelectorAll('[data-price-save]').forEach(btn=>btn.addEventListener('click',()=>{
+    const code=btn.dataset.priceSave;
+    const input=grid.querySelector(`[data-price-input="${code}"]`);
+    const currency=grid.querySelector(`[data-price-currency="${code}"]`).value;
+    if(input.value.trim()===''||!Number.isFinite(Number(input.value))||Number(input.value)<0){alert('请输入有效的购买价格。');input.focus();return;}
+    prices[code]={amount:Number(input.value),currency};savePrices();render();
+  }));
+  grid.querySelectorAll('[data-price-clear]').forEach(btn=>btn.addEventListener('click',()=>{delete prices[btn.dataset.priceClear];savePrices();render();}));
+}
 q.addEventListener('input',render);batch.addEventListener('change',render);render();
 </script></body></html>
