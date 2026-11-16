@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="zh-CN"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>3D 大人の図鑑シール｜收藏图鉴</title>
+<style>
+:root{--bg:#f7f6f2;--card:#fff;--ink:#242424;--muted:#777;--line:#e8e5dd;--accent:#466b60}
+*{box-sizing:border-box}body{margin:0;background:var(--bg);color:var(--ink);font:15px/1.5 system-ui,-apple-system,"Segoe UI",sans-serif}
+header{padding:34px 22px 22px;max-width:1180px;margin:auto}h1{font-size:clamp(25px,4vw,38px);margin:0 0 7px}header p{color:var(--muted);margin:0;max-width:760px}
+.wrap{max-width:1180px;margin:auto;padding:0 22px 48px}.toolbar{display:flex;gap:10px;flex-wrap:wrap;align-items:center;margin:12px 0 20px}.toolbar input,.toolbar select{border:1px solid var(--line);background:white;border-radius:10px;padding:11px 13px;font:inherit}.toolbar input{flex:1;min-width:210px}.count{color:var(--muted);font-size:13px;margin-left:auto}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(195px,1fr));gap:16px}.card{background:var(--card);border:1px solid var(--line);border-radius:15px;overflow:hidden;display:flex;flex-direction:column;min-width:0}.photo{height:290px;background:#f0efeb;display:flex;align-items:center;justify-content:center;padding:10px}.photo img{height:100%;width:100%;object-fit:contain}.missing{color:#888;text-align:center;padding:20px;font-size:13px}.missing b{display:block;font-size:28px;color:#bbb;margin-bottom:8px}.info{padding:13px 14px 15px;display:flex;flex-direction:column;gap:5px;flex:1}.title{font-weight:700;font-size:16px}.jp{font-size:13px;color:#666}.meta{font-size:12px;color:#888}.tag{display:inline-block;background:#edf2ef;color:#47675d;padding:3px 7px;border-radius:20px;font-size:11px;width:max-content}.check{margin-top:7px;font-size:13px;color:#555}.note{background:#fff;border:1px solid var(--line);padding:14px 16px;border-radius:12px;margin:18px 0 22px;color:#666;font-size:13px}footer{max-width:1180px;margin:auto;padding:0 22px 35px;color:#888;font-size:12px}
+@media(max-width:520px){.grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:10px}.photo{height:220px}.info{padding:10px}.title{font-size:14px}}
+</style></head><body>
+<header><h1>3D 大人の図鑑シール</h1><p>个人收藏图鉴 · KAMIO JAPAN · 共整理 21 款。商品图片使用你上传的单款包装照片，古代埃及款已补齐。</p></header>
+<main class="wrap">
+<div class="note">图片已保存在网站本地 images 文件夹中，离线也可以查看。共收录 21 张单款图片，包含古代埃及（231212）。图片仅用于个人收藏整理。</div>
+<div class="toolbar"><input id="q" placeholder="搜索中文主题、日文名称或商品编号…"><select id="batch"><option value="all">全部批次</option><option value="1">第一批 · 6款</option><option value="2">第二批 · 6款</option><option value="3">第三批 · 9款</option></select><span class="count" id="count"></span></div>
+<div class="grid" id="grid"></div></main><footer>非官方个人收藏索引。商品图片版权归 KAMIO JAPAN 及相关权利人所有。</footer>
+<script>
+const items=[{code:'228126',batch:1,zh:'怀旧文具',jp:'懐かしい文房具編',img:'images/228126.jpg'},
+{code:'228127',batch:1,zh:'矿物',jp:'鉱物編',img:'images/228127.jpg'},
+{code:'228128',batch:1,zh:'雪之妖精（长尾山雀）',jp:'シマエナガ編',img:'images/228128.jpg'},
+{code:'228129',batch:1,zh:'天体',jp:'天体編',img:'images/228129.jpg'},
+{code:'228130',batch:1,zh:'鸡尾酒',jp:'カクテル編',img:'images/228130.jpg'},
+{code:'228131',batch:1,zh:'海洋生物',jp:'海洋生物編',img:'images/228131.jpg'},
+{code:'231212',batch:2,zh:'古代埃及',jp:'古代エジプト編',img:'images/231212.jpg'},
+{code:'231213',batch:2,zh:'超市',jp:'スーパー編',img:'images/231213.jpg'},
+{code:'231214',batch:2,zh:'面包',jp:'パン編',img:'images/231214.jpg'},
+{code:'231215',batch:2,zh:'矿物 2',jp:'鉱物編2',img:'images/231215.jpg'},
+{code:'231216',batch:2,zh:'水母',jp:'クラゲ編',img:'images/231216.jpg'},
+{code:'231217',batch:2,zh:'海蛞蝓',jp:'ウミウシ編',img:'images/231217.jpg'},
+{code:'233527',batch:3,zh:'牙齿',jp:'歯編',img:'images/233527.jpg'},
+{code:'233528',batch:3,zh:'乐器',jp:'楽器編',img:'images/233528.jpg'},
+{code:'233529',batch:3,zh:'昆虫',jp:'昆虫編',img:'images/233529.jpg'},
+{code:'233530',batch:3,zh:'鸡蛋料理',jp:'卵料理編',img:'images/233530.jpg'},
+{code:'233531',batch:3,zh:'面食',jp:'麺類編',img:'images/233531.jpg'},
+{code:'233532',batch:3,zh:'复古咖啡厅',jp:'レトロ喫茶編',img:'images/233532.jpg'},
+{code:'233533',batch:3,zh:'海豚与鲸鱼',jp:'イルカ・クジラ編',img:'images/233533.jpg'},
+{code:'233534',batch:3,zh:'热带鱼',jp:'熱帯魚編',img:'images/233534.jpg'},
+{code:'233535',batch:3,zh:'水族馆',jp:'水族館編',img:'images/233535.jpg'}];
+const grid=document.getElementById('grid'),q=document.getElementById('q'),batch=document.getElementById('batch'),count=document.getElementById('count');
+const saved=()=>JSON.parse(localStorage.getItem('zukan-owned')||'[]');
+function render(){let term=q.value.trim().toLowerCase(),b=batch.value;let list=items.filter(x=>(b==='all'||String(x.batch)===b)&&(!term||[x.code,x.zh,x.jp].join(' ').toLowerCase().includes(term)));count.textContent=`显示 ${list.length} / ${items.length} 款`;grid.innerHTML=list.map(x=>`<article class="card"><div class="photo">${x.img?`<a href="${x.img}" target="_blank"><img loading="lazy" src="${x.img}" alt="${x.jp}"></a>`:`<div class="missing"><b>图片待补</b>古代埃及款<br>编号 231212</div>`}</div><div class="info"><span class="tag">第 ${x.batch} 批</span><div class="title">${x.zh}</div><div class="jp">${x.jp}</div><div class="meta">商品编号：${x.code}</div><label class="check"><input type="checkbox" data-code="${x.code}" ${saved().includes(x.code)?'checked':''}> 已收藏</label></div></article>`).join('');grid.querySelectorAll('input[type=checkbox]').forEach(el=>el.addEventListener('change',()=>{let a=saved();a=el.checked?[...new Set([...a,el.dataset.code])]:a.filter(v=>v!==el.dataset.code);localStorage.setItem('zukan-owned',JSON.stringify(a));}));}
+q.addEventListener('input',render);batch.addEventListener('change',render);render();
+</script></body></html>
