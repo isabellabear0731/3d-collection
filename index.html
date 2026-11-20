@@ -59,7 +59,7 @@ const bonbonDefs=[
 ['mini-stitch','Stitch mini','Conditional Wishlist · Mini','conditional','Disney BONBON DROP mini'],
 ['mini-toy-story-alien','Toy Story Alien mini','Conditional Wishlist · Mini','conditional','Disney BONBON DROP mini'],
 ['mini-pooh','Winnie the Pooh mini','Conditional Wishlist · Mini','conditional','Disney BONBON DROP mini'],
-['mini-alice','Alice in Wonderland mini','Conditional Wishlist · Mini','conditional','Disney BONBON DROP mini'],
+['mini-oyster','Young Oyster mini','Conditional Wishlist · Mini','conditional','Disney BONBON DROP mini'],
 ['mini-baymax-white','Baymax mini（白色）','Conditional Wishlist · Mini','conditional','Disney BONBON DROP mini'],
 ['mini-baymax-red','Baymax mini（红色）','Conditional Wishlist · Mini','conditional','Disney BONBON DROP mini']];
 const bonbonItems=bonbonDefs.map(([key,name,label,group,detail])=>({id:'bonbon-'+key,code:'BD-'+key.toUpperCase(),batch:0,zh:name,jp:'Disney Bonbon Drop',img:key.startsWith('mini-')?`images/wishlist-${key}.png`:`images/wishlist-${key}.png`,series:'bonbon',seriesLabel:'Bonbon Drop',group,groupLabel:label,detail}));
